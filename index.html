@@ -10,9 +10,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'DM Sans', system-ui, sans-serif;
     background: #f1e6cf;
@@ -22,7 +20,7 @@
     overflow-x: hidden;
   }
 
-  /* ── NAV ── */
+  /* NAV */
   .bt-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -30,7 +28,6 @@
     background: rgba(241,230,207,0.88);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(26,28,20,0.08);
-    transition: background .3s;
   }
   .bt-nav-logo {
     font-family: 'Fraunces', serif; font-weight: 500; font-size: 20px;
@@ -45,294 +42,136 @@
   }
   .bt-nav-links a:hover { color: #1a1c14; }
   .bt-nav-cta {
-    background: #1a1c14; color: #f1e6cf !important;
+    background: #1a1c14 !important; color: #f1e6cf !important;
     padding: 10px 22px; border-radius: 100px;
     font-size: 12px !important; letter-spacing: 0.08em !important;
-    transition: transform .2s !important;
   }
-  .bt-nav-cta:hover { transform: translateY(-1px); }
   @media (max-width: 700px) {
     .bt-nav { padding: 0 24px; }
     .bt-nav-links { display: none; }
   }
 
-  /* ── TOKENS ── */
+  /* TOKENS */
   :root {
-    --bt-cream: #f1e6cf;
-    --bt-cream-2: #e8dcbf;
-    --bt-terracotta: #b8501e;
-    --bt-terracotta-d: #8a3a14;
-    --bt-ribbon: #f5b5a8;
-    --bt-ribbon-d: #e89687;
-    --bt-ink: #1a1c14;
-    --bt-ink-soft: #5e5d4f;
+    --bt-cream: #f1e6cf; --bt-cream-2: #e8dcbf;
+    --bt-terracotta: #b8501e; --bt-terracotta-d: #8a3a14;
+    --bt-ribbon: #f5b5a8; --bt-ribbon-d: #e89687;
+    --bt-ink: #1a1c14; --bt-ink-soft: #5e5d4f;
     --bt-line: rgba(26,28,20,0.18);
   }
 
-  /* ── SPINE WRAPPER ── */
-  .bt-spine {
-    position: relative;
-    overflow: hidden;
-    padding-top: 64px;
-  }
-  .bt-spine-wrap {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 0;
-  }
+  /* SPINE */
+  .bt-spine { position: relative; overflow: hidden; padding-top: 64px; }
+  .bt-spine-wrap { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
   .bt-spine-wrap svg { width: 100%; height: 100%; display: block; }
-  .bt-spine-wrap path.bt-line {
-    fill: none; stroke: var(--bt-ribbon); stroke-width: 36;
-    stroke-linecap: round; stroke-linejoin: round;
-    animation: btSpineBreathe 6s ease-in-out infinite;
-  }
-  .bt-spine-wrap path.bt-shadow {
-    fill: none; stroke: var(--bt-ribbon-d); stroke-width: 36;
-    stroke-linecap: round; transform: translate(4px,5px); opacity: 0.2;
-  }
-  .bt-spine-wrap circle.bt-node {
-    fill: var(--bt-cream); stroke: var(--bt-ribbon-d); stroke-width: 4;
-    transform-box: fill-box; transform-origin: center;
-    animation: btNodePulse 3s ease-in-out infinite;
-  }
+  .bt-spine-wrap path.bt-line { fill: none; stroke: var(--bt-ribbon); stroke-width: 36; stroke-linecap: round; stroke-linejoin: round; animation: btSpineBreathe 6s ease-in-out infinite; }
+  .bt-spine-wrap path.bt-shadow { fill: none; stroke: var(--bt-ribbon-d); stroke-width: 36; stroke-linecap: round; transform: translate(4px,5px); opacity: 0.2; }
+  .bt-spine-wrap circle.bt-node { fill: var(--bt-cream); stroke: var(--bt-ribbon-d); stroke-width: 4; transform-box: fill-box; transform-origin: center; animation: btNodePulse 3s ease-in-out infinite; }
   .bt-spine-wrap circle.bt-node:nth-child(odd) { animation-delay: -1.5s; }
-  @keyframes btSpineBreathe {
-    0%,100% { filter: drop-shadow(0 0 0 transparent); }
-    50% { filter: drop-shadow(0 0 18px rgba(245,181,168,0.55)); }
-  }
-  @keyframes btNodePulse {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.35); }
-  }
+  @keyframes btSpineBreathe { 0%,100%{filter:drop-shadow(0 0 0 transparent)}50%{filter:drop-shadow(0 0 18px rgba(245,181,168,0.55))} }
+  @keyframes btNodePulse { 0%,100%{transform:scale(1)}50%{transform:scale(1.35)} }
 
-  /* ── LAYOUT ── */
+  /* LAYOUT */
   .bt-page { position: relative; max-width: 1200px; margin: 0 auto; }
   section { position: relative; z-index: 2; }
   .bt-wrap { padding: 0 60px; }
 
-  /* ── HERO ── */
-  .bt-hero {
-    padding: 80px 0 60px;
-    display: grid; grid-template-columns: 1.2fr 1fr;
-    gap: 60px; align-items: center;
-  }
-  .bt-hero-img {
-    position: relative; aspect-ratio: 1/1;
-    border-radius: 24px; overflow: hidden; background: var(--bt-ribbon);
-  }
-  .bt-hero-img img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    animation: btSlowZoom 18s ease-in-out infinite alternate;
-  }
-  @keyframes btSlowZoom {
-    from { transform: scale(1) translateY(0); }
-    to { transform: scale(1.06) translateY(-2%); }
-  }
-  .bt-badge {
-    position: absolute; top: 24px; right: 24px;
-    background: var(--bt-cream); color: var(--bt-ink);
-    padding: 10px 16px; border-radius: 100px;
-    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .bt-badge::before {
-    content: ""; width: 8px; height: 8px; border-radius: 50%;
-    background: var(--bt-terracotta); animation: btPulse 2s infinite;
-  }
+  /* HERO */
+  .bt-hero { padding: 80px 0 60px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+  .bt-hero-img { position: relative; aspect-ratio: 1/1; border-radius: 24px; overflow: hidden; background: var(--bt-ribbon); }
+  .bt-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; animation: btSlowZoom 18s ease-in-out infinite alternate; }
+  @keyframes btSlowZoom { from{transform:scale(1) translateY(0)} to{transform:scale(1.06) translateY(-2%)} }
+  .bt-badge { position: absolute; top: 24px; right: 24px; background: var(--bt-cream); color: var(--bt-ink); padding: 10px 16px; border-radius: 100px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; }
+  .bt-badge::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--bt-terracotta); animation:btPulse 2s infinite; }
   .bt-eyebrow-row { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
-  .bt-eyebrow-row .bt-pulse {
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--bt-terracotta); animation: btPulse 2s infinite;
-  }
-  @keyframes btPulse {
-    0%,100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(1.6); }
-  }
-  .bt-eyebrow {
-    font-family: 'DM Sans', sans-serif; font-size: 11px;
-    letter-spacing: 0.24em; text-transform: uppercase; color: var(--bt-ink-soft);
-  }
-  .bt-hero h1 {
-    font-family: 'Fraunces', serif; font-weight: 500;
-    font-size: clamp(56px,9vw,128px); margin: 0; color: var(--bt-ink);
-    letter-spacing: -0.02em; line-height: 1.04;
-  }
-  .bt-hero h1 em { font-style: italic; color: var(--bt-terracotta); font-weight: 500; }
+  .bt-eyebrow-row .bt-pulse { width:10px; height:10px; border-radius:50%; background:var(--bt-terracotta); animation:btPulse 2s infinite; }
+  @keyframes btPulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.6)} }
+  .bt-eyebrow { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bt-ink-soft); }
+  .bt-hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(56px,9vw,128px); margin: 0; color: var(--bt-ink); letter-spacing: -0.02em; line-height: 1.04; }
+  .bt-hero h1 em { font-style: italic; color: var(--bt-terracotta); }
   .bt-lede { font-size: 20px; color: var(--bt-ink-soft); max-width: 520px; margin: 32px 0 40px; }
   .bt-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
-  .bt-btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 18px 32px; border-radius: 100px;
-    font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14px;
-    text-decoration: none; letter-spacing: 0.04em; transition: transform .25s;
-  }
+  .bt-btn { display: inline-flex; align-items: center; gap: 10px; padding: 18px 32px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14px; text-decoration: none; letter-spacing: 0.04em; transition: transform .25s; }
   .bt-btn:hover { transform: translateY(-2px); }
   .bt-btn.bt-primary { background: var(--bt-ink); color: var(--bt-cream); }
   .bt-btn.bt-ghost { color: var(--bt-ink); border: 1.5px solid var(--bt-ink); }
-  .bt-btn::after { content: "→"; transition: transform .25s; }
+  .bt-btn::after { content:"→"; }
+  @keyframes btArrowBob { 0%,100%{transform:translateX(4px)}50%{transform:translateX(10px)} }
   .bt-btn:hover::after { animation: btArrowBob 0.8s ease-in-out infinite; }
-  @keyframes btArrowBob {
-    0%,100% { transform: translateX(4px); }
-    50% { transform: translateX(10px); }
-  }
 
-  /* ── STAT ── */
-  .bt-stat {
-    padding: 120px 0;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 60px; align-items: center;
-  }
-  .bt-stat-img {
-    aspect-ratio: 1/1; border-radius: 24px;
-    overflow: hidden; background: var(--bt-ribbon); margin-left: 60px;
-  }
+  /* STAT */
+  .bt-stat { padding: 120px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .bt-stat-img { aspect-ratio: 1/1; border-radius: 24px; overflow: hidden; background: var(--bt-ribbon); margin-left: 60px; }
   .bt-stat-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .bt-stat .bt-panel { max-width: 480px; text-align: right; }
-  .bt-stat .bt-num {
-    font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
-    font-size: clamp(96px,14vw,200px); line-height: 0.9;
-    color: var(--bt-terracotta); letter-spacing: -0.04em; margin: 0; display: inline-block;
-  }
+  .bt-stat .bt-num { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; font-size: clamp(96px,14vw,200px); line-height: 0.9; color: var(--bt-terracotta); letter-spacing: -0.04em; margin: 0; display: inline-block; }
   .bt-stat .bt-num .bt-pct { font-style: normal; font-size: 0.5em; vertical-align: top; margin-left: 4px; }
-  .bt-stat h2 {
-    font-family: 'Fraunces', serif; font-weight: 500;
-    font-size: clamp(28px,3.4vw,44px); letter-spacing: -0.02em;
-    margin: 14px 0 16px; line-height: 1.1;
-  }
+  .bt-stat h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(28px,3.4vw,44px); letter-spacing: -0.02em; margin: 14px 0 16px; line-height: 1.1; }
   .bt-stat p { font-size: 15px; color: var(--bt-ink-soft); max-width: 380px; margin-left: auto; }
 
-  /* ── WHY ── */
+  /* WHY */
   .bt-why { padding: 120px 0; }
   .bt-why .bt-head { max-width: 560px; margin-bottom: 60px; }
-  .bt-why h2 {
-    font-family: 'Fraunces', serif; font-weight: 500;
-    font-size: clamp(40px,5vw,72px); letter-spacing: -0.025em;
-    margin: 14px 0; line-height: 1.05;
-  }
+  .bt-why h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(40px,5vw,72px); letter-spacing: -0.025em; margin: 14px 0; line-height: 1.05; }
   .bt-why h2 em { font-style: italic; color: var(--bt-terracotta); }
   .bt-pillars { display: grid; grid-template-columns: repeat(2,1fr); gap: 48px 60px; max-width: 760px; }
-  .bt-pillar {
-    padding: 24px; border: 1px solid var(--bt-line);
-    border-radius: 18px; background: rgba(255,255,255,0.4);
-    transition: transform .4s cubic-bezier(0.22,1,0.36,1), background .4s, border-color .4s;
-  }
+  .bt-pillar { padding: 24px; border: 1px solid var(--bt-line); border-radius: 18px; background: rgba(255,255,255,0.4); transition: transform .4s cubic-bezier(0.22,1,0.36,1), background .4s, border-color .4s; }
   .bt-pillar:hover { transform: translateY(-6px); background: rgba(255,255,255,0.7); border-color: var(--bt-terracotta); }
-  .bt-pillar h3 {
-    font-family: 'Fraunces', serif; font-weight: 500; font-size: 24px;
-    letter-spacing: -0.015em; margin: 0 0 8px;
-    display: flex; align-items: center; gap: 14px;
-  }
-  .bt-pillar h3 .bt-num {
-    font-style: italic; color: var(--bt-terracotta); font-size: 14px;
-    letter-spacing: 0.05em; display: inline-block; transition: transform .4s;
-  }
+  .bt-pillar h3 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 24px; letter-spacing: -0.015em; margin: 0 0 8px; display: flex; align-items: center; gap: 14px; }
+  .bt-pillar h3 .bt-num { font-style: italic; color: var(--bt-terracotta); font-size: 14px; letter-spacing: 0.05em; display: inline-block; transition: transform .4s; }
   .bt-pillar:hover h3 .bt-num { transform: scale(1.4); }
   .bt-pillar p { margin: 0; font-size: 15px; color: var(--bt-ink-soft); line-height: 1.6; }
 
-  /* ── BOTTLES ── */
+  /* BOTTLES */
   .bt-bottles { padding: 140px 0 120px; }
   .bt-bottles .bt-head { max-width: 600px; margin-bottom: 60px; }
-  .bt-bottles h2 {
-    font-family: 'Fraunces', serif; font-weight: 500;
-    font-size: clamp(40px,5vw,72px); letter-spacing: -0.025em;
-    margin: 14px 0; line-height: 1.05;
-  }
+  .bt-bottles h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(40px,5vw,72px); letter-spacing: -0.025em; margin: 14px 0; line-height: 1.05; }
   .bt-bottles h2 em { font-style: italic; color: var(--bt-terracotta); }
   .bt-bottle-list { display: flex; flex-direction: column; }
-  .bt-bottle {
-    display: grid;
-    grid-template-columns: 60px 110px 1fr 1fr 1fr 120px;
-    gap: 24px; align-items: center;
-    padding: 24px 0; border-top: 1px solid var(--bt-line);
-    transition: padding-left .3s;
-  }
-  .bt-bottle .bt-ph {
-    width: 110px; aspect-ratio: 1/1;
-    border-radius: 14px; overflow: hidden; background: var(--bt-ribbon);
-  }
-  .bt-bottle .bt-ph img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    transition: transform .6s cubic-bezier(0.22,1,0.36,1);
-  }
+  .bt-bottle { display: grid; grid-template-columns: 60px 110px 1fr 1fr 1fr 120px; gap: 24px; align-items: center; padding: 24px 0; border-top: 1px solid var(--bt-line); transition: padding-left .3s; }
   .bt-bottle:hover { padding-left: 12px; }
-  .bt-bottle:hover .bt-ph img { transform: scale(1.08) rotate(-2deg); }
   .bt-bottle:last-child { border-bottom: 1px solid var(--bt-line); }
-  .bt-bottle .bt-idx {
-    font-family: 'Fraunces', serif; font-style: italic;
-    color: var(--bt-terracotta); font-size: 32px; letter-spacing: -0.02em;
-    transition: color .3s, transform .3s;
-  }
+  .bt-bottle .bt-ph { width: 110px; aspect-ratio: 1/1; border-radius: 14px; overflow: hidden; background: var(--bt-ribbon); }
+  .bt-bottle .bt-ph img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(0.22,1,0.36,1); }
+  .bt-bottle:hover .bt-ph img { transform: scale(1.08) rotate(-2deg); }
+  .bt-bottle .bt-idx { font-family: 'Fraunces', serif; font-style: italic; color: var(--bt-terracotta); font-size: 32px; letter-spacing: -0.02em; transition: color .3s, transform .3s; }
   .bt-bottle:hover .bt-idx { color: var(--bt-ink); transform: translateX(4px); }
-  .bt-bottle h4 {
-    font-family: 'Fraunces', serif; font-weight: 500; font-size: 28px;
-    margin: 0; letter-spacing: -0.02em; line-height: 1.1;
-  }
+  .bt-bottle h4 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 28px; margin: 0; letter-spacing: -0.02em; line-height: 1.1; }
+  /* Clickable link styles for bottle name + image */
+  .bt-bottle-link { text-decoration: none; color: inherit; display: block; }
+  .bt-bottle-link:hover h4 { color: var(--bt-terracotta); text-decoration: underline; text-underline-offset: 4px; }
   .bt-bottle .bt-meta { font-size: 13px; color: var(--bt-ink-soft); letter-spacing: 0.06em; text-transform: uppercase; }
   .bt-bottle p { margin: 0; font-size: 14px; color: var(--bt-ink-soft); line-height: 1.55; }
-  .bt-bottle .bt-price {
-    font-family: 'Fraunces', serif; font-style: italic;
-    font-size: 24px; text-align: right; color: var(--bt-ink);
-  }
+  .bt-bottle .bt-price { font-family: 'Fraunces', serif; font-style: italic; font-size: 24px; text-align: right; color: var(--bt-ink); }
 
-  /* ── FAQ ── */
+  /* FAQ */
   .bt-faq { padding: 120px 0; }
-  .bt-faq h2 {
-    font-family: 'Fraunces', serif; font-weight: 500;
-    font-size: clamp(40px,5vw,72px); letter-spacing: -0.025em;
-    margin: 14px 0 40px; line-height: 1.05;
-  }
+  .bt-faq h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(40px,5vw,72px); letter-spacing: -0.025em; margin: 14px 0 40px; line-height: 1.05; }
   .bt-faq h2 em { font-style: italic; color: var(--bt-terracotta); }
   .bt-faq details { border-top: 1px solid var(--bt-line); padding: 22px 0; overflow: hidden; }
   .bt-faq details:last-child { border-bottom: 1px solid var(--bt-line); }
-  .bt-faq summary {
-    font-family: 'Fraunces', serif; font-weight: 500; font-size: 22px;
-    cursor: pointer; list-style: none;
-    display: flex; justify-content: space-between; gap: 24px;
-    letter-spacing: -0.01em;
-  }
+  .bt-faq summary { font-family: 'Fraunces', serif; font-weight: 500; font-size: 22px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 24px; letter-spacing: -0.01em; }
   .bt-faq summary::-webkit-details-marker { display: none; }
-  .bt-faq summary::after {
-    content: "+"; font-family: 'DM Sans'; font-size: 24px; font-weight: 300;
-    color: var(--bt-terracotta); transition: transform .3s;
-  }
+  .bt-faq summary::after { content:"+"; font-family:'DM Sans'; font-size:24px; font-weight:300; color:var(--bt-terracotta); transition:transform .3s; }
   .bt-faq details[open] summary::after { transform: rotate(45deg); }
   .bt-faq p { margin: 14px 0 0; color: var(--bt-ink-soft); font-size: 15px; line-height: 1.65; padding-right: 48px; }
   .bt-faq details > *:not(summary) { animation: btFaqOpen .5s cubic-bezier(0.22,1,0.36,1); }
-  @keyframes btFaqOpen { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+  @keyframes btFaqOpen { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:none} }
 
-  /* ── FINAL ── */
-  .bt-final {
-    padding: 160px 0 180px; text-align: center;
-    position: relative; overflow: hidden;
-  }
-  .bt-final::before, .bt-final::after {
-    content: ""; position: absolute; border-radius: 50%;
-    filter: blur(60px); opacity: 0.4; pointer-events: none; z-index: 0;
-  }
-  .bt-final::before {
-    width: 380px; height: 380px; background: var(--bt-ribbon);
-    top: 10%; left: -100px; animation: btFloat1 14s ease-in-out infinite;
-  }
-  .bt-final::after {
-    width: 280px; height: 280px; background: var(--bt-terracotta);
-    bottom: 5%; right: -80px; animation: btFloat2 11s ease-in-out infinite;
-  }
-  @keyframes btFloat1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(60px,40px); } }
-  @keyframes btFloat2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-40px,-50px); } }
+  /* FINAL */
+  .bt-final { padding: 160px 0 180px; text-align: center; position: relative; overflow: hidden; }
+  .bt-final::before,.bt-final::after { content:""; position:absolute; border-radius:50%; filter:blur(60px); opacity:0.4; pointer-events:none; z-index:0; }
+  .bt-final::before { width:380px; height:380px; background:var(--bt-ribbon); top:10%; left:-100px; animation:btFloat1 14s ease-in-out infinite; }
+  .bt-final::after { width:280px; height:280px; background:var(--bt-terracotta); bottom:5%; right:-80px; animation:btFloat2 11s ease-in-out infinite; }
+  @keyframes btFloat1 { 0%,100%{transform:translate(0,0)}50%{transform:translate(60px,40px)} }
+  @keyframes btFloat2 { 0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,-50px)} }
   .bt-final > * { position: relative; z-index: 1; }
-  .bt-final h2 {
-    font-family: 'Fraunces', serif; font-weight: 500;
-    font-size: clamp(56px,8vw,120px); letter-spacing: -0.03em;
-    margin: 0 auto 28px; line-height: 1.02; max-width: 900px;
-  }
+  .bt-final h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(56px,8vw,120px); letter-spacing: -0.03em; margin: 0 auto 28px; line-height: 1.02; max-width: 900px; }
   .bt-final h2 em { font-style: italic; color: var(--bt-terracotta); }
   .bt-final p { font-size: 18px; color: var(--bt-ink-soft); max-width: 520px; margin: 0 auto 36px; }
 
-  /* ── FOOTER ── */
-  .bt-footer {
-    background: var(--bt-ink); color: var(--bt-cream);
-    padding: 48px 60px; display: flex;
-    align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;
-  }
+  /* FOOTER */
+  .bt-footer { background: var(--bt-ink); color: var(--bt-cream); padding: 48px 60px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
   .bt-footer-brand { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; }
   .bt-footer-brand span { font-style: italic; color: var(--bt-ribbon); }
   .bt-footer-links { display: flex; gap: 24px; }
@@ -340,42 +179,40 @@
   .bt-footer-links a:hover { color: var(--bt-cream); }
   .bt-footer-copy { font-size: 12px; color: rgba(241,230,207,0.4); width: 100%; }
 
-  /* ── REVEALS ── */
-  .bt-reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(0.22,1,0.36,1), transform .9s cubic-bezier(0.22,1,0.36,1); }
-  .bt-reveal.bt-in { opacity: 1; transform: none; }
-  .bt-reveal-l { opacity: 0; transform: translateX(-40px); transition: opacity 1s cubic-bezier(0.22,1,0.36,1), transform 1s cubic-bezier(0.22,1,0.36,1); }
-  .bt-reveal-l.bt-in { opacity: 1; transform: none; }
-  .bt-reveal-r { opacity: 0; transform: translateX(40px); transition: opacity 1s cubic-bezier(0.22,1,0.36,1), transform 1s cubic-bezier(0.22,1,0.36,1); }
-  .bt-reveal-r.bt-in { opacity: 1; transform: none; }
-  .bt-word { display: inline-block; overflow: hidden; vertical-align: bottom; }
-  .bt-word > span { display: inline-block; transform: translateY(110%); transition: transform 1s cubic-bezier(0.22,1,0.36,1); }
-  .bt-word.bt-in > span { transform: none; }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-    .bt-reveal, .bt-reveal-l, .bt-reveal-r, .bt-word > span { opacity: 1 !important; transform: none !important; }
+  /* REVEALS */
+  .bt-reveal { opacity:0; transform:translateY(28px); transition:opacity .9s cubic-bezier(0.22,1,0.36,1),transform .9s cubic-bezier(0.22,1,0.36,1); }
+  .bt-reveal.bt-in { opacity:1; transform:none; }
+  .bt-reveal-l { opacity:0; transform:translateX(-40px); transition:opacity 1s cubic-bezier(0.22,1,0.36,1),transform 1s cubic-bezier(0.22,1,0.36,1); }
+  .bt-reveal-l.bt-in { opacity:1; transform:none; }
+  .bt-reveal-r { opacity:0; transform:translateX(40px); transition:opacity 1s cubic-bezier(0.22,1,0.36,1),transform 1s cubic-bezier(0.22,1,0.36,1); }
+  .bt-reveal-r.bt-in { opacity:1; transform:none; }
+  .bt-word { display:inline-block; overflow:hidden; vertical-align:bottom; }
+  .bt-word > span { display:inline-block; transform:translateY(110%); transition:transform 1s cubic-bezier(0.22,1,0.36,1); }
+  .bt-word.bt-in > span { transform:none; }
+  @media (prefers-reduced-motion:reduce) {
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .bt-reveal,.bt-reveal-l,.bt-reveal-r,.bt-word > span{opacity:1!important;transform:none!important}
   }
 
-  /* ── MOBILE ── */
-  @media (max-width: 900px) {
-    .bt-wrap { padding: 0 24px; }
-    .bt-hero { grid-template-columns: 1fr; gap: 30px; padding: 60px 0 40px; }
-    .bt-stat { grid-template-columns: 1fr; gap: 30px; }
-    .bt-stat-img { margin-left: 0; }
-    .bt-stat .bt-panel { text-align: left; }
-    .bt-stat p { margin-left: 0; }
-    .bt-pillars { grid-template-columns: 1fr; gap: 36px; }
-    .bt-bottle { grid-template-columns: 40px 70px 1fr 80px; gap: 14px; }
-    .bt-bottle .bt-ph { width: 70px; }
-    .bt-bottle .bt-meta, .bt-bottle p { display: none; }
-    .bt-footer { padding: 40px 24px; }
-    .bt-spine-wrap path.bt-line, .bt-spine-wrap path.bt-shadow { stroke-width: 22; }
+  /* MOBILE */
+  @media (max-width:900px) {
+    .bt-wrap{padding:0 24px}
+    .bt-hero{grid-template-columns:1fr;gap:30px;padding:60px 0 40px}
+    .bt-stat{grid-template-columns:1fr;gap:30px}
+    .bt-stat-img{margin-left:0}
+    .bt-stat .bt-panel{text-align:left}
+    .bt-stat p{margin-left:0}
+    .bt-pillars{grid-template-columns:1fr;gap:36px}
+    .bt-bottle{grid-template-columns:40px 70px 1fr 80px;gap:14px}
+    .bt-bottle .bt-ph{width:70px}
+    .bt-bottle .bt-meta,.bt-bottle p{display:none}
+    .bt-footer{padding:40px 24px}
+    .bt-spine-wrap path.bt-line,.bt-spine-wrap path.bt-shadow{stroke-width:22}
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="bt-nav">
   <a class="bt-nav-logo" href="https://www.biotreewellness.com">bio <span>tree</span></a>
   <div class="bt-nav-links">
@@ -386,11 +223,9 @@
   </div>
 </nav>
 
-<!-- MAIN -->
 <div class="bt-spine">
   <div class="bt-page">
 
-    <!-- Spine SVG (built by JS) -->
     <div class="bt-spine-wrap" id="btspineWrap">
       <svg id="btspineSvg" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"></svg>
     </div>
@@ -419,7 +254,7 @@
       <div style="padding-right:60px" class="bt-reveal-r">
         <div class="bt-hero-img">
           <span class="bt-badge">Fresh batch · Vol. 01</span>
-          <img src="https://i.imgur.com/O7XmLAh.png" alt="Whole apples in a wooden crate" loading="lazy">
+          <img src="https://i.imgur.com/O7XmLAh.png" alt="Bio Tree Wellness Products" loading="lazy">
         </div>
       </div>
     </section>
@@ -427,7 +262,7 @@
     <!-- STAT -->
     <section class="bt-stat" id="btspine-stat">
       <div class="bt-stat-img bt-reveal-l">
-        <img src="https://i.imgur.com/kIUtkvq.png" alt="Glass of warm tea on a cream linen cloth" loading="lazy">
+        <img src="https://i.imgur.com/kIUtkvq.png" alt="Bio Tree Wellness" loading="lazy">
       </div>
       <div style="padding-right:60px" class="bt-reveal-r">
         <div class="bt-panel">
@@ -463,61 +298,97 @@
           <h2>Pick the one <em>for your day.</em></h2>
         </div>
         <div class="bt-bottle-list">
-        <div class="bt-bottle bt-reveal">
+
+          <!-- 01 Shoukagen -->
+          <div class="bt-bottle bt-reveal">
             <span class="bt-idx">01</span>
-            <a href="https://www.biotreewellness.com/products/shoukagen-chewable-tablet" target="_blank" style="text-decoration:none;color:inherit">
-            <div class="bt-ph"><img src="https://cdn.store-assets.com/s/340393/i/89411040.jpeg" alt="Shoukagen Chewable" loading="lazy"></div></a>
-            <div><h4><a href="https://www.biotreewellness.com/products/shoukagen-chewable-tablet" target="_blank" style="text-decoration:none;color:inherit">Shoukagen Chewable</a></h4>
-              <span class="bt-meta">Digeztology™ + BB536</span></div>
+            <a href="https://www.biotreewellness.com/products/shoukagen" target="_blank" class="bt-bottle-link">
+              <div class="bt-ph"><img src="https://cdn.store-assets.com/s/340393/i/89411040.jpeg" alt="Shoukagen Chewable" loading="lazy"></div>
+            </a>
+            <div>
+              <h4><a href="https://www.biotreewellness.com/products/shoukagen" target="_blank" class="bt-bottle-link">Shoukagen Chewable</a></h4>
+              <span class="bt-meta">Digeztology™ + BB536</span>
+            </div>
             <p>Chewable digestive tablet with enzyme blend and Bifidobacterium longum BB536 probiotic strain.</p>
             <span class="bt-meta">Tablet · Probiotic + Enzyme</span>
             <span class="bt-price">RM 28</span>
           </div>
+
+          <!-- 02 Apple Vinegar -->
           <div class="bt-bottle bt-reveal">
             <span class="bt-idx">02</span>
-            <div class="bt-ph"><img src="https://cdn.store-assets.com/s/340393/i/13796418.jpeg" alt="Apple Vinegar 750ml" loading="lazy"></div>
-            <div><h4><a href="https://www.biotreewellness.com/products/apple-cider-vinegar" target="_blank" style="text-decoration:none;color:inherit">Apple Vinegar</a></h4>
-              <span class="bt-meta">750ml · The daily tonic</span></div>
+            <a href="https://www.biotreewellness.com/products/apple-vinegar" target="_blank" class="bt-bottle-link">
+              <div class="bt-ph"><img src="https://cdn.store-assets.com/s/340393/i/13796418.jpeg" alt="Apple Vinegar 750ml" loading="lazy"></div>
+            </a>
+            <div>
+              <h4><a href="https://www.biotreewellness.com/products/apple-vinegar" target="_blank" class="bt-bottle-link">Apple Vinegar</a></h4>
+              <span class="bt-meta">750ml · The daily tonic</span>
+            </div>
             <p>Slow-fermented from whole apples. Soft, balanced and easy to drink — a good place to start.</p>
             <span class="bt-meta">Whole apples · Mother</span>
             <span class="bt-price">RM 42</span>
           </div>
+
+          <!-- 03 Lemon With Ginger -->
           <div class="bt-bottle bt-reveal">
             <span class="bt-idx">03</span>
-            <div class="bt-ph"><img src="https://cdn.store-assets.com/s/340393/i/21009942.jpg" alt="Lemon With Ginger Vinegar 750ml" loading="lazy"></div>
-            <div><h4><a href="https://www.biotreewellness.com/products/lemon-with-ginger-vinegar" target="_blank" style="text-decoration:none;color:inherit">Lemon With Ginger Vinegar</a></h4>
-              <span class="bt-meta">750ml · Warming</span></div>
+            <a href="https://www.biotreewellness.com/products/lemon-with-ginger-vinegar" target="_blank" class="bt-bottle-link">
+              <div class="bt-ph"><img src="https://cdn.store-assets.com/s/340393/i/21009942.jpg" alt="Lemon With Ginger Vinegar" loading="lazy"></div>
+            </a>
+            <div>
+              <h4><a href="https://www.biotreewellness.com/products/lemon-with-ginger-vinegar" target="_blank" class="bt-bottle-link">Lemon With Ginger Vinegar</a></h4>
+              <span class="bt-meta">750ml · Warming</span>
+            </div>
             <p>Bright, warming, citrus-forward. The kind of drink you reach for in the morning or after a heavy meal.</p>
             <span class="bt-meta">Lemon · Ginger · Honey</span>
             <span class="bt-price">RM 42</span>
           </div>
+
+          <!-- 04 Fruits & Vege -->
           <div class="bt-bottle bt-reveal">
             <span class="bt-idx">04</span>
-            <div class="bt-ph"><img src="https://cdn.store-assets.com/s/340393/i/21009916.jpg" alt="Fruits &amp; Vege Vinegar 750ml" loading="lazy"></div>
-            <div><h4><a href="https://www.biotreewellness.com/products/fruits-vege-vinegar" target="_blank" style="text-decoration:none;color:inherit">Fruits &amp; Vege Vinegar</a></h4>
-              <span class="bt-meta">750ml · Whole-spectrum</span></div>
+            <a href="https://www.biotreewellness.com/products/fruits-vege-vinegar" target="_blank" class="bt-bottle-link">
+              <div class="bt-ph"><img src="https://cdn.store-assets.com/s/340393/i/21009916.jpg" alt="Fruits &amp; Vege Vinegar" loading="lazy"></div>
+            </a>
+            <div>
+              <h4><a href="https://www.biotreewellness.com/products/fruits-vege-vinegar" target="_blank" class="bt-bottle-link">Fruits &amp; Vege Vinegar</a></h4>
+              <span class="bt-meta">750ml · Whole-spectrum</span>
+            </div>
             <p>Multiple fermented fruits and vegetables in a single bottle — the widest spread we make.</p>
             <span class="bt-meta">12 fruits + vegetables</span>
             <span class="bt-price">RM 42</span>
           </div>
+
+          <!-- 05 Pomegranate with Berries -->
           <div class="bt-bottle bt-reveal">
             <span class="bt-idx">05</span>
-            <div class="bt-ph"><img src="https://cdn.store-assets.com/s/340393/i/16681297.jpeg" alt="Pomegranate with Berries 750ml" loading="lazy"></div>
-            <div><h4><a href="https://www.biotreewellness.com/products/pomegranate-with-berries-vinegar" target="_blank" style="text-decoration:none;color:inherit">Pomegranate with Berries</a></h4>
-              <span class="bt-meta">750ml · Antioxidant</span></div>
+            <a href="https://www.biotreewellness.com/products/pomegranate-with-berries" target="_blank" class="bt-bottle-link">
+              <div class="bt-ph"><img src="https://cdn.store-assets.com/s/340393/i/16681297.jpeg" alt="Pomegranate with Berries" loading="lazy"></div>
+            </a>
+            <div>
+              <h4><a href="https://www.biotreewellness.com/products/pomegranate-with-berries" target="_blank" class="bt-bottle-link">Pomegranate with Berries</a></h4>
+              <span class="bt-meta">750ml · Antioxidant</span>
+            </div>
             <p>Polyphenol-dense and deep. Sits between gut, skin and immunity in your daily routine.</p>
             <span class="bt-meta">Pomegranate · Berries</span>
             <span class="bt-price">RM 45</span>
           </div>
+
+          <!-- 06 Roots Lemon Ginger -->
           <div class="bt-bottle bt-reveal">
             <span class="bt-idx">06</span>
-            <div class="bt-ph"><img src="https://cdn.store-assets.com/s/340393/i/13939029.png" alt="Roots Lemon Ginger Juice 300ml" loading="lazy"></div>
-            <div><h4><a href="https://www.biotreewellness.com/products/roots-lemon-ginger-juice" target="_blank" style="text-decoration:none;color:inherit">Roots Lemon Ginger Juice</a></h4>
-              <span class="bt-meta">300ml · No honey added</span></div>
+            <a href="https://www.biotreewellness.com/products/roots-lemon-ginger-juice" target="_blank" class="bt-bottle-link">
+              <div class="bt-ph"><img src="https://cdn.store-assets.com/s/340393/i/13939029.png" alt="Roots Lemon Ginger Juice" loading="lazy"></div>
+            </a>
+            <div>
+              <h4><a href="https://www.biotreewellness.com/products/roots-lemon-ginger-juice" target="_blank" class="bt-bottle-link">Roots Lemon Ginger Juice</a></h4>
+              <span class="bt-meta">300ml · No honey added</span>
+            </div>
             <p>Cold-pressed lemon and ginger root juice with no added honey. Bright, raw, unsweetened.</p>
             <span class="bt-meta">Lemon · Ginger</span>
             <span class="bt-price">RM 42+</span>
           </div>
+
         </div>
       </div>
     </section>
@@ -547,7 +418,6 @@
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer class="bt-footer">
   <div class="bt-footer-brand">bio <span>tree</span> wellness</div>
   <div class="bt-footer-links">
@@ -560,111 +430,93 @@
 
 <script>
 (function(){
-  var SECTIONS = [
-    { id: 'btspine-hero',    side: 'L' },
-    { id: 'btspine-stat',    side: 'R' },
-    { id: 'btspine-why',     side: 'L' },
-    { id: 'btspine-bottles', side: 'R' },
-    { id: 'btspine-faq',     side: 'C' },
-    { id: 'btspine-shop',    side: 'C' }
-  ];
-  var SIDE_X = { L: 220, C: 600, R: 980 };
-  var MOBILE_BREAK = 900;
+  var SECTIONS=[{id:'btspine-hero',side:'L'},{id:'btspine-stat',side:'R'},{id:'btspine-why',side:'L'},{id:'btspine-bottles',side:'R'},{id:'btspine-faq',side:'C'},{id:'btspine-shop',side:'C'}];
+  var SIDE_X={L:220,C:600,R:980};
+  var MOBILE_BREAK=900;
 
   function buildSpine(){
-    var wrap = document.getElementById('btspineWrap');
-    var svg  = document.getElementById('btspineSvg');
-    var page = document.querySelector('.bt-spine .bt-page');
-    if (!wrap || !svg || !page) return;
-    var W = page.offsetWidth;
-    var H = page.offsetHeight;
-    wrap.style.height = H + 'px';
-    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
-    var pageRect = page.getBoundingClientRect();
-    var isMobile = W < MOBILE_BREAK;
-    var mobileMap = { L: 0.28, C: 0.5, R: 0.72 };
-    var pts = SECTIONS.map(function(s){
-      var el = document.getElementById(s.id);
-      if (!el) return null;
-      var r = el.getBoundingClientRect();
-      var y = r.top - pageRect.top + r.height / 2;
-      var frac = isMobile ? mobileMap[s.side] : SIDE_X[s.side] / 1200;
-      return { x: frac * W, y: y };
+    var wrap=document.getElementById('btspineWrap');
+    var svg=document.getElementById('btspineSvg');
+    var page=document.querySelector('.bt-spine .bt-page');
+    if(!wrap||!svg||!page)return;
+    var W=page.offsetWidth,H=page.offsetHeight;
+    wrap.style.height=H+'px';
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    var pageRect=page.getBoundingClientRect();
+    var isMobile=W<MOBILE_BREAK;
+    var mobileMap={L:0.28,C:0.5,R:0.72};
+    var pts=SECTIONS.map(function(s){
+      var el=document.getElementById(s.id);
+      if(!el)return null;
+      var r=el.getBoundingClientRect();
+      var y=r.top-pageRect.top+r.height/2;
+      var frac=isMobile?mobileMap[s.side]:SIDE_X[s.side]/1200;
+      return{x:frac*W,y:y};
     }).filter(Boolean);
-    if (pts.length < 2) return;
-    var d = 'M ' + pts[0].x + ' -40 L ' + pts[0].x + ' ' + (pts[0].y - 100);
-    for (var i = 0; i < pts.length - 1; i++){
-      var a = pts[i], b = pts[i+1];
-      var midY = (a.y + b.y) / 2;
-      d += ' C ' + a.x + ' ' + (midY - (b.y-a.y)*0.1) + ',' + b.x + ' ' + (midY + (b.y-a.y)*0.1) + ',' + b.x + ' ' + b.y;
+    if(pts.length<2)return;
+    var d='M '+pts[0].x+' -40 L '+pts[0].x+' '+(pts[0].y-100);
+    for(var i=0;i<pts.length-1;i++){
+      var a=pts[i],b=pts[i+1],midY=(a.y+b.y)/2;
+      d+=' C '+a.x+' '+(midY-(b.y-a.y)*0.1)+','+b.x+' '+(midY+(b.y-a.y)*0.1)+','+b.x+' '+b.y;
     }
-    d += ' L ' + pts[pts.length-1].x + ' ' + (H+40);
-    var nodes = pts.map(function(p){ return '<circle class="bt-node" cx="'+p.x+'" cy="'+p.y+'" r="8"/>'; }).join('');
-    svg.innerHTML = '<g><path class="bt-shadow" d="'+d+'"/><path class="bt-line" d="'+d+'" id="btspineLine"/>'+nodes+'</g>';
-    var line = document.getElementById('btspineLine');
-    if (line && line.getTotalLength){
-      var len = line.getTotalLength();
-      line.style.strokeDasharray = len;
-      line.style.strokeDashoffset = len;
+    d+=' L '+pts[pts.length-1].x+' '+(H+40);
+    var nodes=pts.map(function(p){return'<circle class="bt-node" cx="'+p.x+'" cy="'+p.y+'" r="8"/>';}).join('');
+    svg.innerHTML='<g><path class="bt-shadow" d="'+d+'"/><path class="bt-line" d="'+d+'" id="btspineLine"/>'+nodes+'</g>';
+    var line=document.getElementById('btspineLine');
+    if(line&&line.getTotalLength){
+      var len=line.getTotalLength();
+      line.style.strokeDasharray=len;
+      line.style.strokeDashoffset=len;
       line.getBoundingClientRect();
-      line.style.transition = 'stroke-dashoffset 3s cubic-bezier(0.4,0,0.2,1)';
-      line.style.strokeDashoffset = 0;
+      line.style.transition='stroke-dashoffset 3s cubic-bezier(0.4,0,0.2,1)';
+      line.style.strokeDashoffset=0;
     }
   }
 
-  // Scroll reveals
-  if ('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if (e.isIntersecting){ e.target.classList.add('bt-in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.bt-reveal,.bt-reveal-l,.bt-reveal-r,.bt-word').forEach(function(el){ io.observe(el); });
-  } else {
-    document.querySelectorAll('.bt-reveal,.bt-reveal-l,.bt-reveal-r,.bt-word').forEach(function(el){ el.classList.add('bt-in'); });
+  if('IntersectionObserver'in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('bt-in');io.unobserve(e.target);}});},{threshold:0.15});
+    document.querySelectorAll('.bt-reveal,.bt-reveal-l,.bt-reveal-r,.bt-word').forEach(function(el){io.observe(el);});
+  }else{
+    document.querySelectorAll('.bt-reveal,.bt-reveal-l,.bt-reveal-r,.bt-word').forEach(function(el){el.classList.add('bt-in');});
   }
 
-  // Hero words
-  var words = document.querySelectorAll('.bt-hero .bt-word');
+  var words=document.querySelectorAll('.bt-hero .bt-word');
   words.forEach(function(w,i){
-    w.style.transitionDelay = (i*0.08)+'s';
-    var s = w.querySelector('span');
-    if (s) s.style.transitionDelay = (i*0.08)+'s';
-    setTimeout(function(){ w.classList.add('bt-in'); }, 200+i*120);
+    w.style.transitionDelay=(i*0.08)+'s';
+    var s=w.querySelector('span');
+    if(s)s.style.transitionDelay=(i*0.08)+'s';
+    setTimeout(function(){w.classList.add('bt-in');},200+i*120);
   });
 
-  // Stagger
-  document.querySelectorAll('.bt-pillar').forEach(function(p,i){ p.style.transitionDelay=(i*0.1)+'s'; });
-  document.querySelectorAll('.bt-bottle').forEach(function(b,i){ b.style.transitionDelay=(i*0.07)+'s'; });
+  document.querySelectorAll('.bt-pillar').forEach(function(p,i){p.style.transitionDelay=(i*0.1)+'s';});
+  document.querySelectorAll('.bt-bottle').forEach(function(b,i){b.style.transitionDelay=(i*0.07)+'s';});
 
-  // Count-up 70%
-  var numEl = document.querySelector('.bt-stat .bt-num');
-  if (numEl && 'IntersectionObserver' in window){
-    var numIo = new IntersectionObserver(function(es){
+  var numEl=document.querySelector('.bt-stat .bt-num');
+  if(numEl&&'IntersectionObserver'in window){
+    var numIo=new IntersectionObserver(function(es){
       es.forEach(function(e){
-        if (e.isIntersecting){
-          var n=0, target=70;
-          (function tick(){ n+=2; numEl.innerHTML=Math.min(n,target)+'<span class="bt-pct">%</span>'; if(n<target) requestAnimationFrame(tick); })();
+        if(e.isIntersecting){
+          var n=0,target=70;
+          (function tick(){n+=2;numEl.innerHTML=Math.min(n,target)+'<span class="bt-pct">%</span>';if(n<target)requestAnimationFrame(tick);})();
           numIo.unobserve(e.target);
         }
       });
-    }, { threshold: 0.5 });
+    },{threshold:0.5});
     numIo.observe(numEl);
   }
 
-  // Parallax
-  var heroImg = document.querySelector('.bt-hero-img');
-  if (heroImg){
-    window.addEventListener('scroll', function(){
-      var r = heroImg.getBoundingClientRect();
-      heroImg.style.transform = 'translateY(' + (window.innerHeight/2-r.top-r.height/2)*0.04 + 'px)';
-    }, { passive: true });
+  var heroImg=document.querySelector('.bt-hero-img');
+  if(heroImg){
+    window.addEventListener('scroll',function(){
+      var r=heroImg.getBoundingClientRect();
+      heroImg.style.transform='translateY('+(window.innerHeight/2-r.top-r.height/2)*0.04+'px)';
+    },{passive:true});
   }
 
-  if (document.readyState === 'complete') buildSpine();
-  else window.addEventListener('load', buildSpine);
+  if(document.readyState==='complete')buildSpine();
+  else window.addEventListener('load',buildSpine);
   var rt;
-  window.addEventListener('resize', function(){ clearTimeout(rt); rt=setTimeout(buildSpine,150); });
+  window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(buildSpine,150);});
 })();
 </script>
 </body>
